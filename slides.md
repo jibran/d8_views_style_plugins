@@ -12,10 +12,10 @@ Note:
 
 - I am drupal core contributer.
 - I have more then 150 core commit mentions in Drupal 8.
-- I am maintainer of shortcuts modules in Drupal 8
+- I am maintainer of shortcuts modules in Drupal 8.
 - I am a senior Drupal developer at PreviousNext.
 - I am very active in views issue queue in Drupal 8.
-- I maintain various Drupal 8 and Drupal 7 views modules including views field view.
+- I maintain various Drupal 8 and Drupal 7 views modules including views field view Drupal 8 branch.
 
 ---
 
@@ -39,7 +39,6 @@ Note:
 - Style<!-- .element: class="fragment" data-fragment-index="2" -->
 
 Note:
-Let's talk more about output part.
 - In views you can choose how you want to display your data you can select either page, block, attachment for other views displays, attachment to entities like entity views attach or even a panel pane.
 - After choosing the display you have to choose how you want to style the result of the query, for that the views module uses style plugins
 
@@ -54,6 +53,13 @@ Let's talk more about output part.
 - Oh! <!-- .element: class="fragment" data-fragment-index="5" -->
   - you have to add views_plugin_style_mystyle.inc<!-- .element: class="fragment" data-fragment-index="5" -->
  to info file for auto loading and rebuild the registry.<!-- .element: class="fragment" data-fragment-index="5" -->
+
+Note:
+- You start it by adding views api hook which let views now that I have something for you in other words it makes you views plugin discoverable for view
+- As a good coding practice you add views.inc file to keep you views specific code out from module file.
+- To define views plugins then you add hook_views_plugins in inc file.
+- In that plugin definition we mention our class
+- To load this class we have to add an entry in .info file.
 
 ---
 
@@ -71,12 +77,22 @@ Let's talk more about output part.
  */
 ```
 
+Note:
+- You just have to add a class in specific directory of you module.
+- There is very easy way to remember this
+- There is no hook_views_plugins in d8 so we use Annotation for that.
+
 ---
 
 ## Markup of views style plugin
 
 - Use plugin class to define style options.<!-- .element: class="fragment" data-fragment-index="1" -->
 - Use theme to style the rows.<!-- .element: class="fragment" data-fragment-index="2" -->
+
+Note:
+- You can customize views markup in views style plugin.
+- There is very easy way to remember this
+- There is no hook_views_plugins in d8 so we use Annotation for that.
 
 ---
 
@@ -105,6 +121,9 @@ function views_vertical_tabs_views_plugins() {
   return $plugins;
 }
 ```
+Note:
+
+- By using plugin hook we can register
 
 ---
 
@@ -214,17 +233,17 @@ class VerticalTabsStyle extends StylePluginBase {
 ...
  */
 ```
-- template_preprocess_THEME_NAME() is still the same.<!-- .element: class="fragment" data-fragment-index="3" -->
+- template_preprocess_THEME_FUNCTION_NAME() is still the same.<!-- .element: class="fragment" data-fragment-index="3" -->
 - But php template engine is replaced by twig template engine.<!-- .element: class="fragment" data-fragment-index="4" -->
     - views-view-vertical-tabs.tpl.php is now views-view-vertical-tabs.html.twig<!-- .element: class="fragment" data-fragment-index="5" -->
 
 ---
 
 ## Preprocess of views_view_vertical_tabs
-- Process views style options.
-- Process views rows.
-- Create renderable array of vertical_tabs.
-- Add proper JS.
+- Process views style options.<!-- .element: class="fragment" data-fragment-index="1" -->
+- Process views rows.<!-- .element: class="fragment" data-fragment-index="2" -->
+- Create renderable array of vertical_tabs.<!-- .element: class="fragment" data-fragment-index="3" -->
+- Add proper JS.<!-- .element: class="fragment" data-fragment-index="4" -->
 
 
 Note:
@@ -250,8 +269,6 @@ Note:
 
 Note:
 
-- @todo
-
 ---
 
 ## views-view-vertical-tabs.html.twig in D7
@@ -274,33 +291,25 @@ Note:
 
 ```
 
-Note:
-
-- @todo
-
 ---
 
 ## Views vertical tabs style plugin in action
 1. After downloading and enabling the <a href="https://www.drupal.org/project/views_vertical_tabs" target="_blank">module</a>.
 2. Select 'Vertical Tabs' option form wizard screen or form views style form.
-<img src="" />
-<img src="" />
 3. Select styling options.
 4. Configure view.
 Note:
 
-- @todo
+- Show Demo.
 
 ---
 
-## Thanks and credits
+## Thanks
+
 - @dawehner
 - @larowlan
 - @previousnext
-- @
-Note:
-
-- @todo better title and labels
+- @DrupalSouth
 
 ---
 
